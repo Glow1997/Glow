@@ -5,7 +5,10 @@
                 SALES STATISTICS
             </template>
             <template v-slot:content>
-                <div class=
+                <div class="w-full overflow-hidden p-2">
+                    <barChart :chartData="revenueMonthly.barChartData" 
+                    :options="revenueMonthly.barChartData" :height="120"></barchart>
+                </div>                    
             </template>
         </contentCard>
     </div>
@@ -16,7 +19,7 @@
     import LineChart from '~/components/charts/LineChart';
 
     const chartColors = {
-        red: 'rgb(225,99,1320)',
+        red: 'rgb(225, 99, 132)',
         orange: 'rgb(225, 159, 64)',
         yellow: 'rgb(255, 205, 86)',
         green: 'rgb(75, 192, 192)',
@@ -46,7 +49,7 @@
                                 chartColors.green,
                                 chartColors.green,
                                 chartColors.green],
-                                data: [5, 3, 4, 6, 4]
+                            data: [5, 3, 4, 6, 4]
                         }
                     ],
                 },
