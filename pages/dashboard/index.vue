@@ -7,7 +7,7 @@
             <template v-slot:content>
                 <div class="w-full overflow-hidden p-2">
                     <barChart :chartData="revenueMonthly.barChartData" 
-                    :options="revenueMonthly.barChartData" :height="120"></barchart>
+                    :options="revenueMonthly.barChartOptions" :height="120"> </barchart>
                 </div>                    
             </template>
         </contentCard>

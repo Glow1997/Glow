@@ -12,7 +12,12 @@ module.exports = {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { href: 'https://cdn.jsdelivr.net/npm/animate.css@3.5.1', rel: 'stylesheet', type:'text/css'}
+    ],
+    script: [
+      { src: 'https://code.jquery.com/jquery-3.4.1.slim.min.js', type: 'text/javascript' },
+      { src: "https://kit.fontawesome.com/<14d35c3bc9.js>", crossorigin: 'anonymous', type:'text/javascript'}, 
     ]
   },
   /*
