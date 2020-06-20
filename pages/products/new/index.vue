@@ -176,7 +176,7 @@
             }
         },
         method :{
-            waterlose (){
+            waterLose () {
                 let wL = this.weightAfterRoast && this.weightBeforeRoast ?
                                 (1-(this.weightAfterRoast/this.weightBeforeRoast))*100 : 0.0
                 return wL                
@@ -196,10 +196,10 @@
                                 ((this.weightBeforeRoast/this.weightAfterRoast) * (this.selectedStock.price/this.selectedStock.purchasedStock))/this.calculatePack() : 0.0
                 return rbPP                
             },
-                calculatePack: function(){
-                    let packs = parseInt(this.weightAfterRoast/(this.weightPerPack/1000))
-                    return packs
-                }       
+            calculatePack: function(){
+                let packs = parseInt(this.weightAfterRoast/(this.weightPerPack/1000))
+                return packs
+            }       
         }
     }
 </script>
