@@ -44,8 +44,7 @@
           "
           @click="login"
           > SIGN IN </button>
-        </form>
-      </div>
+      </form>
     </div>
   </div>      
 </template>
