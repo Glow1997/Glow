@@ -17,7 +17,7 @@ module.exports = {
     ],
     script: [
       { src: 'https://code.jquery.com/jquery-3.4.1.slim.min.js', type: 'text/javascript' },
-      { src: "https://kit.fontawesome.com/<14d35c3bc9.js>", crossorigin: 'anonymous', type:'text/javascript'}, 
+      { src: "https://kit.fontawesome.com/14d35c3bc9.js", crossorigin: 'anonymous', type:'text/javascript'}, 
     ]
   },
   /*

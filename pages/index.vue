@@ -4,47 +4,46 @@
       <div class="pl-1 text-black font-medium text-2xl tracking wide text-center">
         Inventory System
       </div>
-      <div class="m-auto w-full px-5 md:w-1/3">
-        <form>
-          <div class="my-2">
-            <inputElement
-              :labelName="'EMAIL'"
-              :labelId="'email'"
-              :inputType="'email'"
-              :model="email"
-              @input="email = $event"
-              :disabled="false"
-            />
-          </div>
-          <div class="my-2">
-            <inputElement
-              :labelName="'PASSWORD'"
-              :labelId="'password'"
-              :inputType="'password'"
-              :model="password"
-              @input="password = $event"
-              :disabled="false"
-            />
-          </div>
-          <button type="button" class="
-            transition
-            duration-500
-            ease-in-out
-            bg-blue-600
-            rounded-xs
-            w-full
-            py-3
-            text-white
-            font-sans
-            font-bold
-            tracking-wide
-            hover:bg-blue-700
-            hover:text-gray-400
-            active:outline-none
-            focus:outline-none
-            "
-            @click="login"
-            > SIGN IN </button>
+      <form>
+        <div class="my-2">
+          <inputElement
+            :labelName="'EMAIL'"
+            :labelId="'email'"
+            :inputType="'email'"
+            :model="email"
+            @input="email = $event"
+            :disabled="false"
+          />
+        </div>
+        <div class="my-2">
+          <inputElement
+            :labelName="'PASSWORD'"
+            :labelId="'password'"
+            :inputType="'password'"
+            :model="password"
+            @input="password = $event"
+            :disabled="false"
+          />
+        </div>
+        <button type="button" class="
+          transition
+          duration-500
+          ease-in-out
+          bg-blue-600
+          rounded-xs
+          w-full
+          py-3
+          text-white
+          font-sans
+          font-bold
+          tracking-wide
+          hover:bg-blue-700
+          hover:text-gray-400
+          active:outline-none
+          focus:outline-none
+          "
+          @click="login"
+          > SIGN IN </button>
         </form>
       </div>
     </div>

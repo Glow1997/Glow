@@ -55,7 +55,7 @@
                 },
                 barChartOptions: {
                     responsive: true,
-                    legends: {
+                    legend: {
                         display: false,
                     },
                     title: {
