@@ -2,10 +2,10 @@
   <div class="flex h-screen w-full bg-teal-200">
    <div class="m-auto w-full px-5 md:w-1/3">
       <div class="pl-1 text-black font-medium text-2xl tracking wide text-center">
-        Inventory System
+        Inventory System {{ email }}
       </div>
       <form>
-        <div class="my-2">
+        <div class="my-2 ">
           <inputElement
             :labelName="'EMAIL'"
             :labelId="'email'"
@@ -15,7 +15,7 @@
             :disabled="false"
           />
         </div>
-        <div class="my-2">
+        <div class="my-2 ">
           <inputElement
             :labelName="'PASSWORD'"
             :labelId="'password'"
@@ -46,7 +46,7 @@
           > SIGN IN </button>
       </form>
     </div>
-  </div>      
+  </div>
 </template>
 
 <script>
@@ -59,7 +59,7 @@
       mode:"out-in",
       duration: { enter: 1000, leave: 500 },
       enterActiveClass: "animated fadeIn",
-      leaveActiveClass: "animated fadeOut"
+      leaveActiveClass: "animated fadeOut" /* animate.com */
     },
     components: {
       Logo,
@@ -74,8 +74,8 @@
     methods: {
       login: function(){
         this.$router.push("/dashboard")
-      }  
-    }  
+      }
+    }
   }
 </script>
 

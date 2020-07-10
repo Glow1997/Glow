@@ -35,6 +35,35 @@
                         </div>
                     </div>
 
+                    <div class="items-center my-2">
+                        <div class ="font-sans text-sm font-thin tracking-wide text-teal-700 text-center">
+                            STOCK PRICE <br/>
+                            PER KG (MYR)
+                        </div>
+                        <div class="font-sans text-sm font-medium text-3xl tracking-wide text-teal-600 text-center">
+                            {{stockPerKg() | prettyAmount}}
+                        </div>
+                    </div>
+
+                    <div class="items-center my-2">
+                        <div class ="font-sans text-sm font-thin tracking-wide text-teal-700 text-center">
+                            ROASTED BEANS COST <br/>
+                            PER KG (MYR)
+                        </div>
+                        <div class="font-sans text-sm font-medium text-3xl tracking-wide text-teal-600 text-center">
+                            {{roastedBeanPerKG() | prettyAmount}}
+                        </div>
+                    </div>
+
+                    <div class="items-center my-2">
+                        <div class ="font-sans text-sm font-thin tracking-wide text-teal-700 text-center">
+                            BEANS COST PER PACK <br/> (MYR BY {{weightPerPack?weightPerPack:0}}GRAM)
+                        </div>
+                        <div class="font-sans text-sm font-medium text-3xl tracking-wide text-teal-600 text-center">
+                            {{roastedBeanPerPack() | prettyAmount}}
+                        </div>
+                    </div>
+
                 </div>
             </template>
         </contentCard>
@@ -52,7 +81,7 @@
                             :labelId="'beanName'"
                             :inputType="'text'"
                             :model="bean"
-                            @input="bean = $event"
+                            @input="setBean($event)"
                             :disabled="false"
                             />
                         <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -62,7 +91,7 @@
                         <selectElement
                             :labelName="'ROAST LEVEL'"
                             :model="roastLevel"
-                            @select="roastLevel = $event">
+                            @select="setRoastLevel($event)">
                             <template v-slot:select-options>
                                 <option
                                     v-for="roast in roastLevelList" :key="roast" :value="roast">
@@ -78,7 +107,7 @@
                             :labelId="'weightPerPack'"
                             :inputType="'text'"
                             :model="weightPerPack"
-                            @input="weightPerPack = $event"
+                            @input="setWeightPerPack($event)"
                             :disabled="false"
                             />
                         <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -90,7 +119,7 @@
                             :labelId="'weightBeforeRoast'"
                             :inputType="'text'"
                             :model="weightBeforeRoast"
-                            @input="weightBeforeRoast = $event"
+                            @input="setWeightBeforeRoast($event)"
                             :disabled="false"
                             />
                         <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -102,7 +131,7 @@
                             :labelId="'weightAfterRoast'"
                             :inputType="'text'"
                             :model="weightAfterRoast"
-                            @input="weightAfterRoast = $event"
+                            @input="setWeightAfterRoast($event)"
                             :disabled="false"
                             />
                         <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -114,7 +143,7 @@
                             :labelId="'profile'"
                             :inputType="'text'"
                             :model="profile"
-                            @input="profile = $event"
+                            @input="setProfile($event)"
                             :disabled="false"
                             />
                         <i class="fas fa-globe-asia absolute top-0 text-gray-500 right-0 p-3"></i>
@@ -138,11 +167,11 @@
                             w-full
                             "
                             type="button"
+                            @click="createProduct"
                             >
-                                New Product
+                            New Product
                         </button>
                     </div>        
-
                 </form>
             </template>
         </contentCard>                
@@ -152,6 +181,7 @@
     import ContentCard from "~/components/items/ContentCard.vue";
     import InputElement from "~/components/items/Input.vue";
     import SelectElement from "~/components/items/Select.vue";
+    import { mapState, mapMutations, mapActions } from 'vuex';
 
     export default {
         layout:"dashboard",
@@ -160,22 +190,36 @@
             InputElement,
             SelectElement
         },
-        data () {
-            return {
-                bean: '',
-                roastLevel: '',
-                roastLevelList: ['Light Roast', 'Medium Roast', 'Dark Roast'],
-                weightPerPack: '',
-                weightBeforeRoast: '',
-                weightAfterRoast: '',
-                profile: '',
-                selectedStock: {
-                    price: 500,
-                    purchasedStock: 15
-                }    
+        computed:{
+            ...mapState({
+                bean: state => state.product.bean,
+                roastLevel: state => state.product.roastLevel,
+                roastLevelList: state => state.product.roastLevelList,
+                weightPerPack: state => state.product.weightPerPack,
+                weightBeforeRoast: state => state.product.weightBeforeRoast,
+                weightAfterRoast: state => state.product.weightAfterRoast,
+                profile: state => state.product.profile,
+                selectedStock: state => state.product.selectedStock
+            })
+        },
+        filters:{
+            prettyAmount (amount) {
+                return parseFloat(amount).toFixed(2)
             }
         },
-        method :{
+        methods :{
+            ...mapMutations ({
+                resetStore: 'product/resetStore',
+                setBean: 'Product/setBean',
+                setRoastLevel: 'product/setRoastLevel',
+                setWeightPerPack: 'product/setWeightPerPack',
+                setWeightBeforeRoast: 'product/setWeightBeforeRoast',
+                setWeightAfterRoast: 'product/setWeightAfterRoast',
+                setProfile: 'product/setProfile',
+            }),
+            ...mapActions({
+                createProduct: 'Product/createProduct'
+            }),
             waterLose () {
                 let wL = this.weightAfterRoast && this.weightBeforeRoast ?
                                 (1-(this.weightAfterRoast/this.weightBeforeRoast))*100 : 0.0
@@ -199,6 +243,9 @@
             calculatePack: function(){
                 let packs = parseInt(this.weightAfterRoast/(this.weightPerPack/1000))
                 return packs
+            },
+            beforeDestroy(){
+                this.resetstore();
             }       
         }
     }

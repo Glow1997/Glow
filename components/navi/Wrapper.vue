@@ -11,6 +11,7 @@
             </menuLink>
 
             <naviButton
+                :callback="toggleMenu"
                 class="hover:bg-gray-300 hover:text-gray-600 mx-01">
                 <template v-slot:button-icon>
                     <i class="fas fa-bars"></i>
@@ -22,10 +23,17 @@
 <script>
     import NaviButton from "~/components/items/NaviButton.vue";
     import MenuLink from "~/components/items/MenuLink.vue";
+    import { mapMutations } from 'vuex'
+
     export default {
         components:{
             NaviButton,
             MenuLink
+        },
+        methods:{
+            ...mapMutations({
+                toggleMenu: "dashboard/toggleMenu"
+            })   
         }
     }
 </script>

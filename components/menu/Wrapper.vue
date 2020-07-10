@@ -1,16 +1,17 @@
 <template>
-    <div class="
-        flex 
-        flex-col
-        w-56
-        transition-all
-        duration-500
-        ease-in-out 
-        bg-gray-800
-        h-screen
-        shadow-2xl
-        pt-16
-    ">
+    <div :class="{
+        'flex':true, 
+        'flex-col':true,
+        'w-56':showMenu,
+        'w-16':!showMenu,
+        'transition-all':true,
+        'duration-500':true,
+        'ease-in-out':true,
+        'bg-gray-800':true,
+        'h-screen':true,
+        'shadow-2xl':true,
+        'pt-16':true,
+    }">
         <menuLink
             :url="'/dashboard'"
             :class="{
@@ -26,11 +27,12 @@
                 </div>
             </template>    
         </menuLink>
+
         <menuLinkList :url="'/products'"
             :class="{
-            'text-gray-500':!$route.path.includes('/products'),
-            'text-white':$route.path.includes('products'),
-            'cursor-pointer':true
+                'text-gray-500':!$route.path.includes('/products'),
+                'text-white':$route.path.includes('products'),
+                'cursor-pointer':true
             }">
             <template v-slot:icon-word>
                 <div class="flex items-center justify-start overflow-x-hidden hover:text-white">
@@ -61,11 +63,17 @@
 <script>
     import MenuLink from "~/components/items/MenuLink.vue";
     import MenuLinkList from "~/components/items/MenuLinkList.vue";
+    import { mapState } from 'vuex'
 
     export default {
         components:{
             MenuLink,
             MenuLinkList
+        },
+        computed:{
+            ...mapState({
+                showMenu: state => state.dashboard.showMenu
+            })
         }
     }
 </script>
