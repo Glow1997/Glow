@@ -15,6 +15,7 @@
 
   export default {
     name:"dashboard",
+    middleware: 'authentication',
     components:{
       NaviWrapper,
       MenuWrapper

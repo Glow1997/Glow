@@ -31,7 +31,7 @@
         <menuLinkList :url="'/products'"
             :class="{
                 'text-gray-500':!$route.path.includes('/products'),
-                'text-white':$route.path.includes('products'),
+                'text-white':$route.path.includes('/products'),
                 'cursor-pointer':true
             }">
             <template v-slot:icon-word>
@@ -45,7 +45,7 @@
                     :url="'/products/new'"
                     :class="{
                         'text-gray-500':!$route.path.includes('/products/new'),
-                        'text-white':$route.path.includes('products/new'),
+                        'text-white':$route.path.includes('/products/new'),
                         'hover:text-white':true,
                         'cursor-pointer':true
                     }">

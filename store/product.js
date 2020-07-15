@@ -10,7 +10,8 @@ const defaultState = () => {
         selectedStock: {
             price: 500,
             purchasedStock: 15 
-        }
+        },
+        existProduct: []
     }
 };
 
@@ -20,30 +21,37 @@ export const mutations = {
     resetStore: (state) => {
         Object.assign(state, defaultState());
     },
-    setBean: (state,bean) =>{
+    setBean: (state, bean) =>{
         state.bean = bean
     },
     setRoastLevel: (state, roastLevel) =>{
-        state.RoastLevel = roastLevel
+        state.roastLevel = roastLevel
     },
     setWeightPerPack: (state, weightPerPack) =>{
         state.weightPerPack = weightPerPack
     },
-    setWeightBeforeRoast: (state, weightBeforePack) =>{
-        state.weightBeforePack = weightBeforePack
+    setWeightBeforeRoast: (state, weightBeforeRoast) =>{
+        state.weightBeforeRoast = weightBeforeRoast
     },
-    setWeightAfterRoast: (state, weightAfterPack) =>{
-        state.weightAfterPack = weightAfterPack
+    setWeightAfterRoast: (state, weightAfterRoast) =>{
+        state.weightAfterRoast = weightAfterRoast
     },
     setProfile: (state, profile) =>{
         state.profile = profile
     },
-}
+    setExistProduct: (state, existProduct) => {
+        state.existProduct = existProduct['products']
+    }
+};
 
 export const actions = {
     async createProduct ( { state, commit }){
         await this.$apis.product.new(state)
         commit("resetStore") // Reset the State
         this.$router.push("/products") // Move back to product page
+    },
+    async getProduct ( { commit }){
+        await this.$apis.product.all()
+            .then(res => commit("setExistProduct", res))
     }
 }

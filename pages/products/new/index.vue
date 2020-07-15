@@ -12,7 +12,7 @@
                             BEFORE ROAST (KG)
                         </div>
                         <div class="font-sans font-medium text-3xl tracking-wide text-teal-600 text-center">
-                            {{weightBeforeRoast?weightBeforeROast: 0.0 }}
+                            {{weightBeforeRoast?weightBeforeRoast: 0.0 }}
                         </div>
                     </div>
 
@@ -159,7 +159,7 @@
                             text-white
                             py-2
                             py-4
-                            rounded-sm
+                            rounded-sm  
                             shadow-xl
                             hover:bg-teal-700
                             focus:outline-none
@@ -210,7 +210,7 @@
         methods :{
             ...mapMutations ({
                 resetStore: 'product/resetStore',
-                setBean: 'Product/setBean',
+                setBean: 'product/setBean',
                 setRoastLevel: 'product/setRoastLevel',
                 setWeightPerPack: 'product/setWeightPerPack',
                 setWeightBeforeRoast: 'product/setWeightBeforeRoast',
@@ -218,7 +218,7 @@
                 setProfile: 'product/setProfile',
             }),
             ...mapActions({
-                createProduct: 'Product/createProduct'
+                createProduct: 'product/createProduct'
             }),
             waterLose () {
                 let wL = this.weightAfterRoast && this.weightBeforeRoast ?
@@ -231,9 +231,9 @@
                 return spKG
             },
             roastedBeanPerKG () {
-                let rBKG = Object.keys(this.selectedStock).length > 0 && this.weightAfterBoast ?
+                let rBKG = Object.keys(this.selectedStock).length > 0 && this.weightAfterRoast ?
                                 (this.weightBeforeRoast/this.weightAfterRoast) * (this.selectedStock.price/this.selectedStock.purchasedStock) : 0.0
-                return rBKG               
+                return rBKG
             },
             roastedBeanPerPack () {
                 let rbPP = Object.keys(this.selectedStock).length > 0 && this.weightAfterRoast && this.weightPerPack ?
@@ -245,7 +245,7 @@
                 return packs
             },
             beforeDestroy(){
-                this.resetstore();
+                this.resetStore();
             }       
         }
     }

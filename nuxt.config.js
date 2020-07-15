@@ -1,3 +1,5 @@
+require('dotenv').config()
+const firebaseConfig = process.env.FS360_FB_CRED? process.env.FS360_FB_CRED: "{}";
 
 module.exports = {
   mode: 'universal',
@@ -50,6 +52,22 @@ module.exports = {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    [
+      '@nuxtjs/firebase',
+      {
+          config: JSON.parse(firebaseConfig),
+          services: {
+          realtimeDb: false,
+          auth: {
+            persistence: 'session',
+            initialize: {
+            onAuthStateChangedAction: 'auth/onAuthStateChangedAction',
+            },
+            ssr: true
+          }  
+          }
+      }
+    ]
   ],
   /*
   ** Axios module configuration
