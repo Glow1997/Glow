@@ -73,9 +73,9 @@
       }
     },  
     computed:{ 
-        ...mapState({
-            isLoggedIn : state => state.auth.isLoggedIn,
-        })
+      ...mapState({
+          isLoggedIn : state => state.auth.isLoggedIn,
+      })
     },
     methods: {
       login: function(){

@@ -167,7 +167,7 @@
                             w-full
                             "
                             type="button"
-                            @click="createProduct"
+                            @click="createProduct(user)"
                             >
                             New Product
                         </button>
@@ -192,6 +192,7 @@
         },
         computed:{
             ...mapState({
+                user : state => state.auth.user,
                 bean: state => state.product.bean,
                 roastLevel: state => state.product.roastLevel,
                 roastLevelList: state => state.product.roastLevelList,

@@ -32,7 +32,8 @@ export default {
     },
     computed:{
         ...mapState({
-            existProduct: state => state.product.existProduct
+            existProduct: state => state.product.existProduct,
+            user : state => state.auth.user
         })
     },
     methods:{
@@ -41,7 +42,7 @@ export default {
         })
     },
     async mounted(){
-        await this.getProduct()
+        await this.getProduct(this.user.uid, this.user.idToken)
     }
 }    
 </script>
