@@ -2,7 +2,7 @@
   <div class="flex h-screen w-full bg-teal-200">
    <div class="m-auto w-full px-5 md:w-1/3">
       <div class="pl-1 text-black font-medium text-2xl tracking wide text-center">
-        Inventory System {{ email }}
+        Inventory System
       </div>
       <form>
         <div class="my-2 ">

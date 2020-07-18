@@ -41,7 +41,7 @@ export default {
     },
     methods:{
         ...mapActions({
-            userlogin : "auth/userLogin",
+            userLogin : "auth/userLogin",
         })
     },
     data(){
