@@ -21,7 +21,7 @@
     "express": "^4.16.4",
     "express-async-handler": "^1.1.4",
     "firebase": "^7.16.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "save": "^2.4.0",
     "vue-chart.js": "^0.2.0",
     "vue-chartjs": "^3.5.0"
